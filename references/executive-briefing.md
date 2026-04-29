@@ -40,7 +40,7 @@
 > *Cover the following in one focused paragraph per attendee:*
 >
 > *1. **Position & Tenure** — Current role, reporting line, years at company, relevant career moves*
-> *2. **Communication Style** — Direct & pragmatic, or conservative & indirect? For executive attendees, integrate persona's "How They Talk & How to Talk to Them" guidance.*
+> *2. **Communication Style** — Direct & pragmatic, or conservative & indirect? For executive attendees, reference the matched CXO Persona (read INDEX.md first to map title → persona file) for communication preferences and language patterns.*
 > *3. **Decision Role & Business Focus** — Level of decision authority on AWS-related matters; current focus areas. For executive attendees, integrate persona's Priorities and KPIs.*
 > *4. **Attitude Toward AWS** — Overall stance (supportive / wait-and-see / reserved / prefers competitors); known concerns or sensitivities; topics to avoid. For executive attendees, integrate persona's Pain Points and common objections.*
 > *5. **Collaboration History** — Highlights (successful projects, co-creation, strategic partnerships); past friction points*

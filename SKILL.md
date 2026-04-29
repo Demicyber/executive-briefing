@@ -4,7 +4,7 @@ description: >
   Generates Executive Briefing Documents for AWS internal executive preparation.
   Used for EBC visits and when AWS senior leadership joins customer meetings.
   This is the sole preparation document for these scenarios — no Call Plan is produced alongside.
-  Works with Engagement Plan, Post-Meeting Report, and CXO Personas skills.
+  Works with Engagement Plan, Post-Meeting Report, Opportunity Progression, Contact Profile, CXO Personas, and Call Plan skills.
   Triggers on: "EBC", "executive briefing", "internal briefing", "leadership briefing",
   "EBC preparation", "executive visit", "领导拜访", "高管简报".
 ---
@@ -36,7 +36,32 @@ EP → Executive Briefing → Visit → PMR → Update EP → ...
 
 ---
 
-## 3. Core Rules
+## 3. Input
+
+Executive Briefing accepts input from two paths:
+
+### Path A: From Engagement Plan (preferred)
+When an EP exists for this opportunity, auto-pull:
+- **Stakeholder info** from EP Key Stakeholders (stance, priorities, what we need)
+- **Opportunity context** from EP Section 1 (Opportunity Snapshot + Win Strategy)
+- **Meeting context** from EP Engagement Roadmap
+
+Agent enriches with CXO Personas (for exec attendees), Contact Profile (for relationship history), and public research.
+
+### Path B: Direct request from sales rep
+When no EP exists, collect from sales:
+1. Meeting logistics (date, time, format, location)
+2. Who requested the meeting and why
+3. Customer attendees (names + titles)
+4. AWS attendees
+5. Meeting objectives
+6. Account context
+
+Then generate the EB. **After generating via Path B, always auto-create an EP** — every opportunity needs a strategic wrapper.
+
+---
+
+## 4. Core Rules
 
 ### Rule 1: Always Build the Bigger Picture
 After generating an Executive Briefing, check if an Engagement Plan exists. If not, auto-create one.
@@ -64,7 +89,7 @@ Many fields in this document require information the agent **cannot independentl
 
 ---
 
-## 4. EB Template
+## 5. EB Template
 
 Read [references/executive-briefing.md](references/executive-briefing.md) before generating. The template has 5 sections:
 
@@ -76,19 +101,19 @@ Read [references/executive-briefing.md](references/executive-briefing.md) before
 
 ---
 
-## 5. Attendee Background Dimensions
+## 6. Attendee Background Dimensions
 
 For each customer attendee, cover in one focused paragraph:
 
 1. **Position & Tenure** — Current role, reporting line, years at company, relevant career moves
-2. **Communication Style** — Direct & pragmatic, or conservative & indirect? For executives, integrate persona's "How They Talk & How to Talk to Them" guidance
+2. **Communication Style** — Direct & pragmatic, or conservative & indirect? For executives, reference the matched CXO Persona for communication preferences and language patterns.
 3. **Decision Role & Business Focus** — Level of decision authority; current focus areas. For executives, integrate persona's Priorities and KPIs
 4. **Attitude Toward AWS** — Overall stance (supportive / wait-and-see / reserved / prefers competitors); known concerns or sensitivities; topics to avoid. For executives, integrate persona's Pain Points and common objections
 5. **Collaboration History** — Highlights (successful projects, partnerships); past friction points
 
 ---
 
-## 6. Company Profile Dimensions
+## 7. Company Profile Dimensions
 
 Cover in one focused paragraph:
 
@@ -100,19 +125,20 @@ Cover in one focused paragraph:
 
 ---
 
-## 7. Relationship with Other Skills
+## 8. Relationship with Other Skills
 
-| Skill | Relationship |
-|--------|-------------|
-| **Engagement Plan** | EB pulls account background and stakeholder info from EP. After EB visit, PMR updates EP. |
-| **Post-Meeting Report** | After the EB visit, generate a PMR. EB's Objectives and Success Definition are auto-pulled into PMR's Outcome Assessment. |
-| **Call Plan** | If the meeting is an EBC or internal leadership briefing → generate EB, NOT a Call Plan. |
-| **Contact Profile** | For each customer attendee, pull background and trust level from Contact Profile to inform Attendee Background dimensions. |
-| **CXO Personas** | For executive attendees, load matched persona and weave into Attendee Background dimensions. |
+| Skill | Relationship | How to Access | If Unavailable |
+|--------|-------------|---------------|----------------|
+| **Engagement Plan** | EB pulls account background and stakeholder info from EP. After EB visit, PMR updates EP. | Load `EP_{Customer}_{Opportunity}.md` from workspace. | Use sales rep's direct input (Path B). Auto-create EP after generating EB. |
+| **CXO Personas** | For executive attendees, load matched persona. Read INDEX.md first to map title → persona file, then weave into Attendee Background dimensions. | Load persona from `cxo-personas/personas/` using INDEX.md Title Mapping. | Use general executive priorities based on role. Mark as `[待确认]`. |
+| **Contact Profile** | For each attendee, pull relationship history, trust level, collaboration history. | Load contact profile if it exists in workspace. | Use sales rep's input. Mark unknown fields as `[待确认]`. |
+| **Post-Meeting Report** | After EB visit, generate PMR. EB's Objectives and Success Definition auto-pulled into PMR Outcome Assessment. | N/A — PMR reads from the EB file. | N/A. |
+| **Call Plan** | If meeting is EBC or internal leadership briefing → generate EB, NOT Call Plan. | N/A — mutual exclusion. | N/A. |
+| **Opportunity Progression** | Sales stage and MEDDPICC context inform Meeting Objectives. | Load opp record if it exists. | Confirm stage with sales rep. |
 
 ---
 
-## 8. Document Quality Standards
+## 9. Document Quality Standards
 
 Before delivering, validate:
 - Logistics + who requested & why
@@ -124,7 +150,7 @@ Before delivering, validate:
 
 ---
 
-## 9. Information Insufficient Fallback
+## 10. Information Insufficient Fallback
 
 1. **Never block.** Generate best-effort version with available information.
 2. **Never hallucinate.** If you cannot verify a piece of information, do NOT fill it with plausible-sounding content. Mark it as `[待确认]` instead.
@@ -135,7 +161,7 @@ Before delivering, validate:
 
 ---
 
-## 10. Language & Tone
+## 11. Language & Tone
 
 - **Professional but approachable** — not stiff, not casual
 - **Action-oriented** — active voice, lead with verbs
@@ -147,9 +173,19 @@ Before delivering, validate:
 
 ---
 
-## 11. Document Output
+## 12. Document Output
 
-All documents delivered as **Word (.docx) files**. On first use, ask the user where they want documents saved.
+All documents delivered as **Markdown (.md)** by default. Users can request other formats (Word .docx, PDF). On first use, ask the user where they want documents saved.
+
+### File Naming Convention
+
+`EB_{Customer}_{Date}.md`
+
+Example: `EB_RuianGroup_2026-05-15.md`
+
+### Storage
+
+Save EB files in the workspace or a location specified by the user.
 
 ---
 
