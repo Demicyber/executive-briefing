@@ -66,13 +66,17 @@ Then generate the EB. **After generating via Path B, always auto-create an EP** 
 ### Rule 1: Always Build the Bigger Picture
 After generating an Executive Briefing, check if an Engagement Plan exists. If not, auto-create one.
 
-### Rule 2: Persona-Driven (Executive-Only)
-For each **customer executive attendee** (C-suite, VP):
+### Rule 2: People-Informed (Contact Profiling + CXO Personas)
+For **every customer attendee**, invoke **Contact Profiling** to obtain or build their behavioral profile (communication style, decision patterns, what motivates/triggers them). Weave these insights into the Attendee Background dimensions.
+
+For **executive attendees** (C-suite, VP):
 1. Match to the closest CXO Persona
 2. Load the specific persona file
-3. Weave persona insights directly into the Attendee Background dimensions — do not add a separate persona summary
+3. Weave persona insights (role priorities, pain points, KPIs) into the Attendee Background dimensions alongside Contact Profiling insights
 
-For Manager/IC attendees, prepare based on role and context without personas.
+Both layers work together: CXO Persona provides role-level insight (the **what**); Contact Profiling provides person-level insight (the **how**). Sales input always takes priority — if sales provides new information that conflicts with existing profiles, adjust accordingly.
+
+For Manager/IC attendees, use Contact Profiling only (no CXO Persona).
 
 ### Rule 3: INTERNAL ONLY
 Mark the document clearly as **INTERNAL USE ONLY — AWS Confidential**. This document is never shared with customers.
@@ -86,6 +90,14 @@ Many fields in this document require information the agent **cannot independentl
 2. **Mark clearly** with `[待确认]` / `[To be confirmed]` and explain what's needed.
 3. **Proactively ask sales** to provide or confirm the information.
 4. **Explain why it matters** — help sales understand the value of filling the gap.
+
+### Rule 6: Sync Back to EP
+After generating an Executive Briefing, compare attendees and objectives with EP's Next Milestone Detail. If there are differences (new attendees, removed attendees, changed objectives), **sync changes back to the EP immediately**:
+1. **New attendees** → Add to EP Key Stakeholders with available info; mark unknown fields as `[待确认]` for sales to fill
+2. **Attendee changes** → Update EP Next Milestone Detail (Customer Attendees & Target Outcome)
+3. **Objective changes** → Update the corresponding row in EP Engagement Roadmap
+4. Add `[Updated: YYYY-MM-DD]` timestamp next to every changed field in the EP
+5. After syncing, notify sales: "EP has been updated to reflect the Executive Briefing changes — please review."
 
 ---
 
@@ -106,7 +118,7 @@ Read [references/executive-briefing.md](references/executive-briefing.md) before
 For each customer attendee, cover in one focused paragraph:
 
 1. **Position & Tenure** — Current role, reporting line, years at company, relevant career moves
-2. **Communication Style** — Direct & pragmatic, or conservative & indirect? For executives, reference the matched CXO Persona for communication preferences and language patterns.
+2. **Communication Style** — Direct & pragmatic, or conservative & indirect? For executives, reference the matched CXO Persona for communication preferences and language patterns, combined with Contact Profiling for this specific person's behavioral traits. For non-executives, use Contact Profiling. Sales input always takes priority over profile defaults.
 3. **Decision Role & Business Focus** — Level of decision authority; current focus areas. For executives, integrate persona's Priorities and KPIs
 4. **Attitude Toward AWS** — Overall stance (supportive / wait-and-see / reserved / prefers competitors); known concerns or sensitivities; topics to avoid. For executives, integrate persona's Pain Points and common objections
 5. **Collaboration History** — Highlights (successful projects, partnerships); past friction points
@@ -129,9 +141,9 @@ Cover in one focused paragraph:
 
 | Skill | Relationship | How to Access | If Unavailable |
 |--------|-------------|---------------|----------------|
-| **Engagement Plan** | EB pulls account background and stakeholder info from EP. After EB visit, PMR updates EP. | Load `EP_{Customer}_{Opportunity}.md` from workspace. | Use sales rep's direct input (Path B). Auto-create EP after generating EB. |
-| **CXO Personas** | For executive attendees, load matched persona. Read INDEX.md first to map title → persona file, then weave into Attendee Background dimensions. | Load persona from `cxo-personas/personas/` using INDEX.md Title Mapping. | Use general executive priorities based on role. Mark as `[待确认]`. |
-| **Contact Profile** | For each attendee, pull relationship history, trust level, collaboration history. | Load contact profile if it exists in workspace. | Use sales rep's input. Mark unknown fields as `[待确认]`. |
+| **Engagement Plan** | EB pulls account background and stakeholder info from EP. After EB visit, PMR updates EP. After generating, sync any attendee/objective changes back to EP (Rule 6). | Load `EP_{Customer}_{Opportunity}.md` from workspace. | Use sales rep's direct input (Path B). Auto-create EP after generating EB. |
+| **CXO Personas** | For executive attendees, load matched persona to understand the **role's** priorities, pain points, KPIs, and common objections. Weave into Attendee Background dimensions (the **what**). Read INDEX.md first to map title → persona file. | Load persona from `cxo-personas/personas/` using INDEX.md Title Mapping. | Use general executive priorities based on role. Mark as `[待确认]`. |
+| **Contact Profiling** | For **every** attendee, invoke Contact Profiling to obtain or build their behavioral profile — communication style, decision patterns, what motivates/triggers them. Weave into Attendee Background dimensions (the **how**). | Load contact profiling file if it exists; otherwise initiate profiling through dialogue with sales. | Use sales rep's input. Mark unknown fields as `[待确认]`. |
 | **Post-Meeting Report** | After EB visit, generate PMR. EB's Objectives and Success Definition auto-pulled into PMR Outcome Assessment. | N/A — PMR reads from the EB file. | N/A. |
 | **Call Plan** | If meeting is EBC or internal leadership briefing → generate EB, NOT Call Plan. | N/A — mutual exclusion. | N/A. |
 | **Opportunity Progression** | Sales stage and MEDDPICC context inform Meeting Objectives. | Load opp record if it exists. | Confirm stage with sales rep. |
@@ -189,4 +201,4 @@ Save EB files in the workspace or a location specified by the user.
 
 ---
 
-*Executive Briefing Skill | Version: 1.0 | INTERNAL USE ONLY*
+*Executive Briefing Skill | Version: 1.1 | INTERNAL USE ONLY*
