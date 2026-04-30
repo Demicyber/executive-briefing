@@ -33,14 +33,14 @@
 
 ### Attendees
 
-> *Repeat for each customer attendee. For executive-level attendees (C-suite, VP), load the matched CXO Persona profile and weave persona insights directly into the relevant dimensions below — do not add a separate persona summary.*
+> *Repeat for each customer attendee. For executive-level attendees (C-suite, VP), load the matched CXO Persona profile and weave persona insights directly into the relevant dimensions below. For all attendees, invoke Contact Profiling to obtain behavioral insights. Do not add separate persona/profiling summary sections — weave insights into the dimensions.*
 
 **{Attendee Name}**, {Title}
 
 > *Cover the following in one focused paragraph per attendee:*
 >
 > *1. **Position & Tenure** — Current role, reporting line, years at company, relevant career moves*
-> *2. **Communication Style** — Direct & pragmatic, or conservative & indirect? For executive attendees, reference the matched CXO Persona (read INDEX.md first to map title → persona file) for communication preferences and language patterns.*
+> *2. **Communication Style** — Direct & pragmatic, or conservative & indirect? For executive attendees, reference the matched CXO Persona (read INDEX.md first to map title → persona file) for communication preferences and language patterns, combined with Contact Profiling for this specific person's behavioral traits. For non-executives, use Contact Profiling. Sales input always takes priority over profile defaults.*
 > *3. **Decision Role & Business Focus** — Level of decision authority on AWS-related matters; current focus areas. For executive attendees, integrate persona's Priorities and KPIs.*
 > *4. **Attitude Toward AWS** — Overall stance (supportive / wait-and-see / reserved / prefers competitors); known concerns or sensitivities; topics to avoid. For executive attendees, integrate persona's Pain Points and common objections.*
 > *5. **Collaboration History** — Highlights (successful projects, co-creation, strategic partnerships); past friction points*
@@ -131,4 +131,4 @@
 
 ---
 
-*Executive Briefing Template | Version: 1.0 | INTERNAL USE ONLY*
+*Executive Briefing Template | Version: 1.1 | INTERNAL USE ONLY*

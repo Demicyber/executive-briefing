@@ -4,7 +4,7 @@ description: >
   Generates Executive Briefing Documents for AWS internal executive preparation.
   Used for EBC visits and when AWS senior leadership joins customer meetings.
   This is the sole preparation document for these scenarios — no Call Plan is produced alongside.
-  Works with Engagement Plan, Post-Meeting Report, Opportunity Progression, Contact Profile, CXO Personas, and Call Plan skills.
+  Works with Engagement Plan, Post-Meeting Report, Opportunity Progression, Contact Profiling, CXO Personas, and Call Plan skills.
   Triggers on: "EBC", "executive briefing", "internal briefing", "leadership briefing",
   "EBC preparation", "executive visit", "领导拜访", "高管简报".
 ---
@@ -46,7 +46,7 @@ When an EP exists for this opportunity, auto-pull:
 - **Opportunity context** from EP Section 1 (Opportunity Snapshot + Win Strategy)
 - **Meeting context** from EP Engagement Roadmap
 
-Agent enriches with CXO Personas (for exec attendees), Contact Profile (for relationship history), and public research.
+Agent enriches with CXO Personas (for exec attendees), Contact Profiling (for behavioral insights), and public research.
 
 ### Path B: Direct request from sales rep
 When no EP exists, collect from sales:
@@ -106,7 +106,7 @@ After generating an Executive Briefing, compare attendees and objectives with EP
 Read [references/executive-briefing.md](references/executive-briefing.md) before generating. The template has 5 sections:
 
 1. **Meeting Logistics** — Date/time/format, AWS attendees, who requested and why, key contacts
-2. **Customer Attendee Background** — Per-attendee detail (5 dimensions with CXO Persona integrated) + Company Profile (5 dimensions)
+2. **Customer Attendee Background** — Per-attendee detail (5 dimensions with CXO Persona + Contact Profiling integrated) + Company Profile (5 dimensions)
 3. **Meeting Objectives** — Success definition, strategic alignment, per-objective detail (objective, context, talking points, asks)
 4. **AWS Account Background** — Geo/segment, spend, PPA status, account summary (5 dimensions)
 5. **Appendix** — Previous meeting notes, relevant customer success stories, competitive intelligence detail
@@ -154,7 +154,7 @@ Cover in one focused paragraph:
 
 Before delivering, validate:
 - Logistics + who requested & why
-- Attendee background (5 dimensions, with CXO Persona integrated for executives) + company profile (5 dimensions)
+- Attendee background (5 dimensions, with CXO Persona + Contact Profiling integrated) + company profile (5 dimensions)
 - Objectives with success definition + talking points + asks
 - Account background (spend/PPA/5 dimensions including recent wins)
 - Appendix with previous meeting notes and competitive intelligence
