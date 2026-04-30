@@ -74,7 +74,11 @@ For **executive attendees** (C-suite, VP):
 2. Load the specific persona file
 3. Weave persona insights (role priorities, pain points, KPIs) into the Attendee Background dimensions alongside Contact Profiling insights
 
-Both layers work together: CXO Persona provides role-level insight (the **what**); Contact Profiling provides person-level insight (the **how**). Sales input always takes priority — if sales provides new information that conflicts with existing profiles, adjust accordingly.
+**Context-aware reading:** Do not dump the entire CXO Persona — **select and emphasize the dimensions most relevant to this meeting's objectives and the current opportunity**. Same persona, different opp = different focus. EBC-level meetings typically need deeper persona insights than regular visits (e.g., CEO communication preferences, strategic priorities, known sensitivities).
+
+**Web research enrichment:** Supplement CXO Persona and Contact Profiling with web research (company news, annual reports, LinkedIn, industry reports) to capture company-specific and person-specific context. For EBC documents, web research is especially important — AWS executives need current, verified information, not stale profile data. If sales indicates a person doesn't fit the typical persona, proactively research their background. Cross-validate persona assumptions against real-world data.
+
+Both layers work together: CXO Persona provides role-level insight (the **what**); Contact Profiling provides person-level insight (the **how**). Web research grounds both in reality. Sales input always takes priority — if sales provides new information that conflicts with existing profiles, adjust accordingly.
 
 For Manager/IC attendees, use Contact Profiling only (no CXO Persona).
 
