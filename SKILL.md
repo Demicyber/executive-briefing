@@ -150,7 +150,7 @@ Cover in one focused paragraph:
 | **Contact Profiling** | For **every** attendee, invoke Contact Profiling to obtain or build their behavioral profile — communication style, decision patterns, what motivates/triggers them. Weave into Attendee Background dimensions (the **how**). | Load contact profiling file if it exists; otherwise initiate profiling through dialogue with sales. | Use sales rep's input. Mark unknown fields as `[待确认]`. |
 | **Post-Meeting Report** | After EB visit, generate PMR. EB's Objectives and Success Definition auto-pulled into PMR Outcome Assessment. | N/A — PMR reads from the EB file. | N/A. |
 | **Call Plan** | If meeting is EBC or internal leadership briefing → generate EB, NOT Call Plan. | N/A — mutual exclusion. | N/A. |
-| **Opportunity Progression** | Sales stage and MEDDPICC context inform Meeting Objectives. | Load opp record if it exists. | Confirm stage with sales rep. |
+| **Opportunity Progression** | Sales stage and opportunity context inform Meeting Objectives. | Load opp record if it exists. | Confirm stage with sales rep. |
 
 ---
 
@@ -205,4 +205,4 @@ Save EB files in the workspace or a location specified by the user.
 
 ---
 
-*Executive Briefing Skill | Version: 1.1 | INTERNAL USE ONLY*
+*Executive Briefing Skill | Version: 2.1 | INTERNAL USE ONLY*
