@@ -101,24 +101,34 @@ EBC 结束后同样走 PMR 闭环。以下字段被 PMR 拉取：
 
 定位：让高管在 2 分钟内了解 "我面对的是什么人、他们在乎什么、我跟他们聊的时候要注意什么"
 
+输出格式：
+- 每人输出一整段自然流畅的中文文字，字数严格控制在 180-220 字
+- 语言正式、逻辑清晰、信息密度高，适配高管阅读
+- 不用 bullet points 罗列，用完整段落叙述
+- 避免空洞口号或泛泛描述（如"致力于创新"），应使用具体事实、数据、业务动作支撑
+
 写法标准：
-- 每人一段聚焦描述，不超过 150 字
 - 必须包含 stance（Holden 5 级）+ evidence — 高管要知道对方是友是敌
-- Communication Style 要具体到行为指导（"先给数据再谈战略"而不是"analytical type"）
+- Communication Style 来自 Contact Profiling — 要具体到行为指导（"先给数据再谈战略"而不是"analytical type"）
 - 对 executive attendees：从 CXO Personas 提取最相关维度（按本次会议目标筛选）
-- 对所有人：Contact Profiling 补充个人行为特征
+- 对所有人：Contact Profiling 补充个人行为特征和沟通风格
 - 销售 input 永远优先于 profile defaults
 
-维度（每人覆盖）：
-1. Position & Tenure — 当前角色、汇报线、关键职业轨迹
-2. Stance & Evidence — Holden 5 级 + 判断依据（不接受无 evidence 的标签）
-3. What They Care About — 跟本次会议最相关的 1-2 个 pain/priority
-4. Communication Approach — 怎么跟他聊最有效 + 什么要避免
-5. Relationship History — 跟 AWS 的互动历史、正面/负面经历
+维度（每人覆盖，融入一段话中）：
+1. Position & Tenure — 当前角色、汇报线、在公司任职年限、关键职业轨迹（如内部晋升、跨部门调任）
+2. Communication Style — 来自 Contact Profiling，转化为行为指导（怎么跟他沟通最有效 + 什么要避免）
+3. Decision Role & Business Focus — 在 AWS 相关议题上的决策权级别 + 当前关注业务领域
+4. Stance & Attitude Toward AWS — Holden 5 级 + evidence + 已知顾虑/敏感话题 + 竞争背景
+5. Collaboration History — 与 AWS 的互动亮点/痛点，是否与本次会议相关
+
+缺失信息处理：
+- 如部分输入信息缺失，正常输出人物简介（基于已有信息）
+- 在简介后以"建议补充信息"形式，简要提示哪些字段缺失，以便后续完善
 
 质量标准：
 - ❌ "CTO, supportive, likes innovation"（标签式，无 actionable info）
-- ✅ "王总 (CTO), 入职 14 个月（从 Google Cloud 跳来），Supporter — 主动索要了三份技术白皮书但尚未公开站台。工程师出身，要 benchmark 开场不要 PPT。核心关注：董事会要求的 Q4 降本 20% 目标。注意：他的前任做了 Azure 决策，他公开转向 AWS 有政治风险。"
+- ❌ "致力于推动数字化转型"（空洞口号）
+- ✅ "王总 (CTO), 入职 14 个月（从 Google Cloud 跳来），Supporter — 主动索要了三份技术白皮书但尚未公开站台。工程师出身，应提供详细数据与论证，条理清晰地阐述观点，不要从 PPT 开场。核心关注：董事会要求的 Q4 降本 20% 目标，其团队上季度被点名基础设施成本超支。注意：他的前任做了 Azure 决策，他公开转向 AWS 有政治风险。与 AWS SA 团队有过一次成功的 Well-Architected Review 合作。"
 -->
 
 > *💡 Agent generates from EP Key Stakeholders + CXO Personas + Contact Profiling. Each attendee gets a focused paragraph. Sales confirms and adds relationship nuances.*
@@ -134,17 +144,25 @@ EBC 结束后同样走 PMR 闭环。以下字段被 PMR 拉取：
 <!-- AGENT GUIDANCE:
 📥 数据源：Account Information skill + web research
 
-写法标准：
-- 高管需要 60 秒了解 "这是什么公司、多大、什么阶段、最近有什么大事"
-- 只写跟本次会议相关的上下文，不是公司百科全书
-- 如果公司有最近的重大事件（财报、并购、裁员、高管变动），必须提
+输出格式：
+- 输出为一整段描述性中文文字，语言自然流畅
+- 字数控制在中文不超过 200 字
+- 风格为商务、专业、信息密度高，适用于高管快速了解客户背景
+- 避免空洞口号或泛泛描述（如"致力于创新"），应使用具体事实、数据、业务动作支撑
 
-维度：
-1. Positioning & Industry Standing — 干什么的、排第几
-2. Scale & Impact — 营收、用户规模、市场份额
-3. Technology Profile — 云采纳阶段、AI 态度、核心技术栈
-4. Strategic Priorities & Key Events — 当前战略方向 + 近期大事
-5. Recent Leadership Changes — 近 6 个月 C-suite/board 变动
+维度（融入一段话中）：
+1. 公司定位与行业地位 — 用一句话说明干什么的、属于什么行业（如"中国领先的电商平台"）
+2. 业务规模或影响力 — 过去 12 个月年营收、服务用户数、市场份额、全球/国内排名等
+3. 技术驱动特征 — AI 应用阶段以及对 AI 的态度、自动化、云计算、自研系统等
+4. 当前或未来战略重点 + 过去一年及未来一年内的公司重大事件 — 特别是与 AWS 合作相关（如出海扩张、AI/GenAI 转型、云原生重构、数字化等）
+5. 最近半年管理层变动（如有） — CEO 更换、董事会调整等
+
+缺失信息处理：
+- 如部分信息缺失，正常输出公司简介 + 末尾标注"建议补充信息"
+
+质量标准：
+- ❌ "一家致力于创新的科技企业"（空洞，无信息量）
+- ✅ "京东集团是中国第二大电商平台（仅次于阿里巴巴），2024 年营收约 1.08 万亿元，自营物流体系覆盖全国 99% 区县。技术层面重度投入自研 AI，已将大模型应用于客服、商品推荐和仓储调度。当前战略重点为国际化扩张（东南亚和欧洲）和 AI 提效降本。2024 年 9 月 CFO 更换，新任 CFO 来自投行背景，对 ROI 量化要求更高。"
 -->
 
 > *{公司定位. 规模. 技术 profile. 战略方向. 近期重大事件.}*
@@ -163,6 +181,13 @@ EBC 结束后同样走 PMR 闭环。以下字段被 PMR 拉取：
 - EBC 写给高管 — 更简、重在 asks 和 talking points
 - EBC 的 asks 必须是利用 peer-level 身份/关系才能有效提出的
 
+生成规则：
+- 为每一个目标单独生成一个完整的会议事项，包含 4 个模块
+- Objective + Context：销售输入什么就原文输出，不做语言优化和修改
+- Talking Points：Agent 生成
+- Asks：Agent 生成
+- 如果销售输入多个目标，逐个生成对应模块，不合并
+
 Success Definition 写法：
 - 一句话回答 "这次去了之后，如果达成什么我们就算成功？"
 - 必须是可验证的客户动作，不是"建立关系"
@@ -172,18 +197,26 @@ Strategic Alignment 写法：
 - 如果高管知道 big picture，他的对话会更有方向感
 
 Objective 写法标准：
-- Objective/Outcome：动词开头的具体动作
-- Context：高管需要知道的背景（为什么要这个、什么在阻碍、竞争对手在做什么）
-- Talking Points：口语化的表达方式，高管拿来就能用
-- Asks：必须是高管级别才能问的问题（CEO 对 CEO 承诺、预算方向、战略合作意向）
+- Objective/Outcome：动词开头的具体动作（原文输出，不修改）
+- Context：高管需要知道的背景（原文输出，不修改）
+- Talking Points（Agent 生成）：
+  - 输出为一整段自然流畅的高管对话式文字，适合 AWS 管理层在会议中直接表达
+  - 结合客户公司信息与参会人职能/关注点，制定针对该 objective 和 context 的交流话术
+  - 内容应体现 AWS 与客户的合作方式（如联合机制、共建路径）或客户可获得的业务价值（如提升效率、降低成本、增强竞争力等）
+  - 语言风格为高管沟通语气，专业、清晰
+  - 不使用项目符号，不拆成多条，只输出一段话
+- Asks（Agent 生成）：
+  - 结合客户的组织结构、业务优先级、参会人的职责与影响力，提出精准的请求
+  - 体现 AWS 高层对客户高层的合作请求或业务请求
+  - 必须是高管级别才能做的事 — 利用 peer-level 关系/身份
+  - 使用项目符号，每个 ask 一条
+  - 每个 objective 对应的 asks 不超过 2 条
   - ❌ "了解他们的技术需求"（AM/SA 就能问）
   - ✅ "请对方 CEO 确认：如果 POC 达标，是否愿意在下季度董事会上支持 $3M 预算审批？"
 
-质量标准：
-- 每个 objective 必须有明确的"高管才能做的事"
-- Talking points 是对话式的，不是 bullet points 独白
-- Context 要坦诚（包括风险和不确定性），高管讨厌被 surprise
-- 2-3 个 objectives 足够，不要超过 3 个
+目标数量：2-3 个足够，不要超过 3 个（60 分钟高管会议）
+
+所有内容输出语言为中文，风格专业，高管友好。
 -->
 
 > *💡 Agent drafts objectives based on EP Next Milestone Detail. Account team reviews. Each objective must leverage executive-level authority or peer relationship.*
