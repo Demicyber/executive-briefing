@@ -60,6 +60,30 @@ EBC 结束后同样走 PMR 闭环。以下字段被 PMR 拉取：
 - 用完整句子叙述，不是碎片式要点罗列
 - 该有判断的地方给判断（"我们认为…"），不只是罗列事实
 - 竞争敏感信息标注来源可信度
+
+## 高管会议节奏建议（Conversation Arc）
+高管会议不需要 rigid agenda，但 agent 应在 Section 3 给出建议的对话节奏：
+
+| 阶段 | 时间 | 要点 |
+|---|---|---|
+| Connect | 0-3 min | 破冰 + 一句话说明"今天为什么在一起" |
+| Insight | 3-8 min | 分享 1 个 commercial insight（数据/行业趋势），问对方视角 |
+| Dialogue | 8-20 min | 60% 客户说、40% 我们说。围绕 objectives 展开对话，不是 presentation |
+| Align | 20-25 min | 总结听到的、确认理解一致 |
+| Commit | 25-30 min | 提出 next steps（必须有 owner + date），不能空手离开 |
+
+核心原则：
+- 前 10 分钟不要用 PPT — 先对话建立连接
+- 如果客户把对话带到有价值的方向，follow 他们（不死守 agenda）
+- 无论对话走向哪里，最后 5 分钟一定留给 next steps
+- 我方发言人不超过 2 人（人多显得像来推销的）
+
+反面模式（Anti-patterns）：
+- ❌ 用公司介绍开场（高管不在乎）
+- ❌ 超过 3 页 slides 才开口问对话
+- ❌ 让会议在没有明确 next step 的情况下结束
+- ❌ 问 research 就能回答的问题（显得没准备）
+- ❌ 我方人数 > 客户人数（压迫感）
 -->
 
 ---
@@ -73,6 +97,19 @@ EBC 结束后同样走 PMR 闭环。以下字段被 PMR 拉取：
 - 高管只需要 30 秒扫完就知道：什么时候、去哪、跟谁、为什么
 - "Who requested and why" 必须给上下文 — 高管要知道自己为什么被请来
 - AWS Team 要标注每个人的 purpose — 高管不想到场后才发现角色不清
+
+输出格式：
+- 表格部分直接填充，简洁明了
+- "Who requested and why" 用一整段文字（2-3 句话），必须覆盖：谁发起、为什么需要高管参与、这次会议在 roadmap 里的位置、不去会怎样
+- AWS Team 表格：每个人的 Purpose 必须是具体动作，不是"支持"
+
+缺失信息处理：
+- 如果会议时间/地点未确认 → 标注 "TBC — 待销售确认"
+- 如果 AWS 参会人未全部确认 → 列已知的 + 标注"待确认"
+
+Sample "Who requested and why"：
+> ❌ "Account team 希望 VP 出席帮助推进项目。"（没信息量）
+> ✅ "Account team 请求 VP Zhang 出席，利用其与客户 CEO 的既有关系打开高管通道。这是 Engagement Roadmap 第 3 步 — 前两次技术验证已确认方案可行，但项目卡在预算审批（CFO 层面）3 周未推进。如果本月不建立 CEO-level 对话，Azure 可能抢先安排其 VP 拜访锁定关系。"
 -->
 
 | Field | Details |
@@ -217,6 +254,67 @@ Objective 写法标准：
 目标数量：2-3 个足够，不要超过 3 个（60 分钟高管会议）
 
 所有内容输出语言为中文，风格专业，高管友好。
+
+## Anticipated Concerns（在 Objectives 之后生成）
+📥 数据源：EP Estimate & Contingency (Stakeholder Risk) + 销售补充 + CXO Personas
+
+定位：高管可能被当面提出的难题。不准备 = 被 surprise = 信任崩塌。
+
+生成规则：
+- 最多列 2-3 个最可能的 pushback
+- 每个 concern 用 Acknowledge → Pivot → Elevate 框架准备回应：
+  1. Acknowledge：承认顾虑（不 dismiss，不defensive）
+  2. Pivot：转到更广的业务上下文
+  3. Elevate：提升到战略影响 / 不行动的风险
+- 输出格式：每个 concern 一段话（含回应策略），不超过 100 字
+- 同时标注 Landmines（绝对不要主动提的话题）
+
+质量标准：
+- ❌ "客户可能会问价格" + "我们说我们很有竞争力"（泛泛且 defensive）
+- ✅ "客户 CFO 可能质疑迁移 ROI（他上月内部会议上公开说过）。回应：先承认大规模迁移确实需要算清楚账，然后引同行业 XX 公司第一年运维成本降 30% 的数据，最后提'如果不行动，现有系统的维护成本每年递增 15%，到 2026 年会吃掉你们新业务的预算空间'。"
+
+Sample output format：
+
+### Anticipated Concerns
+
+**1. {顾虑主题}**
+> {一整段：顾虑描述 + 回应策略（Acknowledge → Pivot → Elevate）}
+
+**2. {顾虑主题}**
+> {一整段}
+
+### ⚠️ Landmines — 不要主动提
+> - {Topic 1}：{为什么不能提 — e.g., "去年 POC 延期 3 个月，客户 VP 被内部批评，至今有心结"}
+> - {Topic 2}：{为什么不能提}
+
+## Proposed Next Steps（在 Concerns 之后生成）
+📥 数据源：EP Engagement Roadmap（下一个 milestone）+ EP Next Milestone Detail + 本次 objectives
+
+定位：高管会议如果没有 close next step 就白去了。提前准备分层 asks，根据会议走向灵活选择。
+
+生成规则：
+- 必须分三层准备（会议进展好/一般/不理想都有对应 next step）
+- 每层 next step 必须是具体动作（who + what + when），不是"保持联系"
+- 必须是 executive-level 的承诺（不是执行细节）
+- 都由我方主动提出（不要问"您觉得下一步该怎么做？"）
+
+Next Step 分层标准：
+- CEO-to-CEO 适合请求：战略合作意向、内部 champion 指定、预算方向、引荐董事会/peer CEO、组织资源承诺
+- CEO-to-CEO 不适合请求：技术评估细节、合同条款、定价谈判、实施时间线（这些让 working level 去谈）
+
+质量标准：
+- ❌ Ideal: "达成合作" / Acceptable: "保持沟通" / Minimum: "留个好印象"（空洞无物）
+- ✅ Ideal: "客户 CEO 当场指定 CTO 作为项目 sponsor，承诺两周内安排三方会议确定 POC 范围" / Acceptable: "客户 CEO 同意让 CTO 团队与我们 SA 做一次深度技术验证，月底前完成" / Minimum: "客户 CEO 同意我方 VP 下月再来拜访，届时由客户 CTO 陪同并带 procurement 负责人"
+
+Sample output format：
+
+### Proposed Next Steps
+
+| 层级 | Next Step | 触发条件 |
+|---|---|---|
+| **Ideal** | {具体动作 + owner + timeline} | 会议顺利，所有 objectives 达成 |
+| **Acceptable** | {具体动作 + owner + timeline} | 部分 objectives 达成，对方态度积极但需要内部协调 |
+| **Minimum** | {具体动作 + owner + timeline} | 对方态度保留，但至少保住继续对话的机会 |
 -->
 
 > *💡 Agent drafts objectives based on EP Next Milestone Detail. Account team reviews. Each objective must leverage executive-level authority or peer relationship.*
@@ -258,11 +356,39 @@ Objective 写法标准：
 
 定位：让高管了解 "这个客户跟 AWS 的关系全貌" — spend、增长势头、问题、竞争
 
-写法标准：
+输出格式：
+- Account Summary 用一整段叙述文字（不超过 250 字），信息密度高
 - 数字要准确、有来源（不能说"大概"）
-- Account Summary 用叙述段落，不是碎片要点
 - Competitive Landscape 要坦诚 — 高管讨厌到了现场才发现竞争对手的事
 - 如果有 active escalation 或 service issue，必须提！高管被客户当面提起而自己不知道 = 灾难
+
+维度（融入一段话中）：
+1. AWS Usage — 什么 workload 在 AWS 上，核心服务，迁移状态
+2. Commercial — PPA 状态、续约时间线、spend 趋势
+3. Recent Wins / Momentum — 近 3-6 个月正面进展
+4. Issues / Concerns — ⚠️ 活跃的 escalation、服务事故、未解决的投诉（高管必须知道！）
+5. Competitive Landscape — 其他云厂商的存在感、我们的 win theme
+
+缺失信息处理：
+- 如部分数据不可用（如 spend 未授权查看），标注"建议补充"
+- Issues 信息如果没有 → 明确写"无已知活跃 escalation"（让高管放心）
+
+质量标准：
+- ❌ 只列好消息不提问题（高管被 surprise = 信任崩塌）
+- ❌ "$20M spend"（没有趋势没有上下文）
+- ✅ "客户当前年 spend $20M（YoY +35%），主要跑在 EC2 + S3 + SageMaker。$25M PPA 12 个月提前达标，续约谈判中但客户 procurement 在试探 Azure 报价作为 leverage。上月有一次 S3 可用性事件影响了客户生产环境（已解决但客户 VP Infra 仍有情绪）。阿里云在其国内业务有约 30% 份额，但客户海外业务 100% AWS。"
+
+Sample output format：
+
+| Field | Details |
+|---|---|
+| **Geo / Segment** | GCR / Enterprise |
+| **Current AWS Spend** | $20M (FY2025), YoY +35% |
+| **Expected Spend** | $25M (FY2026) |
+| **Commit / PPA Status** | $25M PPA 12 个月提前达标；续约谈判中 |
+
+### Account Summary
+> {一整段：AWS Usage + Commercial + Recent Wins + Issues/Concerns + Competitive Landscape}
 -->
 
 | Field | Details |
@@ -275,16 +401,12 @@ Objective 写法标准：
 ### Account Summary
 
 <!-- AGENT GUIDANCE:
-用一段话覆盖：
-1. AWS Usage — 什么 workload 在 AWS 上，核心服务，迁移状态
-2. Commercial — PPA 状态、续约时间线、spend 趋势
-3. Recent Wins / Momentum — 近 3-6 个月正面进展
-4. Issues / Concerns — ⚠️ 活跃的 escalation、服务事故、未解决的投诉（高管必须知道！）
-5. Competitive Landscape — 其他云厂商的存在感、我们的 win theme
-
-质量标准：
-- ❌ 只列好消息不提问题（高管被 surprise = 信任崩塌）
-- ✅ 坦诚呈现全貌，包括风险和未解决问题
+Account Summary 已在上面的主 guidance 里覆盖。这里只做补充说明：
+- 如果客户在多个 region 有 workload，按业务重要性排序提
+- Competitive Landscape 中如果有"客户正在评估替代方案"，必须用红色标注级别：
+  - 🔴 Active evaluation（已有 POC/benchmark）
+  - 🟡 Exploring（收集信息/询价阶段）
+  - 🟢 Awareness only（只是提了一嘴，没有实质动作）
 -->
 
 > *{AWS usage overview. Commercial status. Recent momentum. Active issues/risks. Competitive landscape summary.}*
@@ -295,14 +417,53 @@ Objective 写法标准：
 
 <!-- AGENT GUIDANCE:
 Appendix 是 optional 的深度参考 — 高管可能不看，但如果被问到细节可以翻阅。
-- Previous Meeting Notes：上次高管参与的会议要点 + 遗留 action items 状态
-- Customer Success Stories：跟客户情况匹配的 1-2 个案例（同行业、同规模、同挑战）
-- Competitive Intel：比 Account Summary 更详细的竞争分析
 
-质量标准：
-- 案例必须有量化结果（"降低 30% 成本"不是"效果很好"）
-- 竞争情报标注信息来源和可信度
-- Previous Meeting Notes 如果有未完成 action items → 高亮，高管可能被问到
+### A. Previous Meeting Notes
+📥 数据源：上一份 PMR（如有高管参与的会议）
+
+生成规则：
+- 只提高管级别的会议（不是每次 working-level call）
+- Action items 必须标注状态 — 高管可能被当面问"你上次说的那个事做了没有？"
+- 如果有 ❌ Overdue 的 items → 高亮提示，准备解释
+
+Sample：
+> 上次高管会议（2025-03-15，AWS VP Zhang + 客户 CTO 李总）要点：
+> - 双方同意在 Q2 启动联合 AI Lab 项目
+> - 客户 CTO 要求 AWS 提供 3 个同行业 GenAI 案例
+> - Action Items: ✅ 案例已于 4/1 提交 | 🔄 AI Lab MOU 草案进行中（法务审核）| ❌ 客户侧指定项目负责人（已逾期 2 周，本次会议需 follow up）
+
+### B. Customer Success Stories
+📥 数据源：AWS Case Study库 + Solutions Search skill
+
+生成规则：
+- 1-2 个案例，必须 mirror 客户情况（同行业 or 同规模 or 同挑战）
+- 每个案例必须有：行业、挑战、方案、量化结果、时间线
+- 量化结果必须有数字 — "效果很好"不是证据
+
+Sample：
+> **案例：某头部零售企业（2024）**
+> 挑战：双十一峰值流量扩容成本过高 + AI 推荐系统响应延迟
+> 方案：EC2 Spot + SageMaker 实时推理 + CloudFront 全球加速
+> 结果：峰值扩容成本降低 42%，推荐系统 P99 延迟从 800ms → 120ms，GMV 提升 8%
+> 时间线：POC 4 周 → 全量上线 3 个月
+
+### C. Competitive Intelligence
+📥 数据源：EP Win Strategy + Compete skill + 销售补充
+
+生成规则：
+- 只写跟本次会议直接相关的竞争对手
+- 每个竞争对手用结构化格式
+- 标注信息来源可信度（confirmed / suspected / rumored）
+- Displacement strategy 要务实 — 不是所有竞对都要打，有的是共存
+
+Sample：
+> **Azure（🟡 Exploring）**
+> - Products in use：Azure AD（全公司 SSO）、Azure DevOps（研发团队）
+> - Contract：3 年 EA 到 2025.12，客户已在评估是否续约
+> - Sentiment：基本满意但认为 AI/ML 能力不如 AWS
+> - Our differentiator：SageMaker 全托管 + Bedrock 多模型选择（客户 CTO 明确说过"不想被一家 LLM 锁定"）
+> - Strategy：共存（不打 Azure AD），集中火力在 AI/ML workload 上争取增量
+> - 信息来源：AM confirmed (2025-04)
 -->
 
 ### A. Previous Meeting Notes & Action Items
