@@ -165,7 +165,7 @@ Read [references/executive-briefing.md](references/executive-briefing.md) before
 
 1. **Meeting Logistics** — Date/time/format, AWS attendees, who requested and why, key contacts
 2. **Customer Attendee Background** — Per-attendee detail (5 dimensions) + Company Profile (5 dimensions)
-3. **Meeting Objectives** — Success definition, strategic alignment, per-objective detail (objective, context, talking points, asks)
+3. **Meeting Objectives & Preparation** — Success definition, strategic alignment, per-objective detail (objective, context, talking points, asks), anticipated concerns (Acknowledge-Pivot-Elevate + landmines), proposed next steps (3-tier: ideal / acceptable / minimum)
 4. **AWS Account Background** — Geo/segment, spend, PPA status, account summary (5 dimensions)
 5. **Appendix** — Previous meeting notes, relevant customer success stories, competitive intelligence detail
 
@@ -216,6 +216,8 @@ Before delivering, validate:
 - [ ] Attendee background (5 dimensions per person, with Persona + Profiling integrated)
 - [ ] Company profile (5 dimensions)
 - [ ] Objectives with success definition + talking points + asks
+- [ ] Anticipated concerns with Acknowledge-Pivot-Elevate response + landmine flags
+- [ ] Proposed next steps (3-tier: ideal / acceptable / minimum)
 - [ ] Account background (spend/PPA/5 dimensions including recent wins)
 - [ ] Appendix with previous meeting notes and competitive intelligence
 
