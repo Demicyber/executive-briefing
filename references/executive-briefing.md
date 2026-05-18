@@ -499,4 +499,4 @@ Sample：
 
 ---
 
-*Executive Briefing Template | Version: 2.1 | INTERNAL USE ONLY*
+*Executive Briefing Template | Version: 2.3 | INTERNAL USE ONLY*
