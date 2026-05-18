@@ -137,7 +137,7 @@ Many fields require information the agent cannot independently verify (relations
 3. Explain why it matters
 
 ### Rule 6: Sync Back to EP
-After generating, compare attendees and objectives with EP's Next Milestone Detail. If there are differences:
+**Only when the EP pre-existed** (not just auto-created by this EB run). After generating, compare attendees and objectives with EP's Next Milestone Detail. If there are differences:
 1. **New attendees** → Add to EP Key Stakeholders; mark unknown fields as `[待确认]`
 2. **Attendee changes** → Update EP Next Milestone Detail
 3. **Objective changes** → Update EP Engagement Roadmap
