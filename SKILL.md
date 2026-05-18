@@ -61,7 +61,58 @@ After generating via Path B, **always auto-create an EP** — every opportunity 
 
 ---
 
-## 4. Core Rules
+## 4. Generation Workflow — Pre-Generation Dialogue
+
+EB generation is **NOT** a one-shot output. EBC/高管拜访准备通常涉及多方协调，agent 和 sales 在生成前需要对话确认。
+
+**流程：**
+
+```
+Sales 请求 EBC prep / EP Next Milestone 标记为高管拜访
+    ↓
+Agent 展示已知信息（从 EP pull 的 + 网络搜索）
+    ↓
+【Pre-Generation Dialogue 对话确认阶段】
+    ├── Agent 展示已知：EP 中的参会人、商机背景、竞争态势
+    ├── Agent 提出待确认项：具体日期？AWS 方谁来？会议目的？sales 想要什么结果？
+    ├── Sales 可能反问 → Agent 作为信息提供者回应
+    │   （这位高管什么风格？上次见面聊了什么？有什么 sensitivity？）
+    ├── Sales 补充/修正 → Agent 实时调整理解
+    └── 关键输入确认后
+    ↓
+Agent 正式生成 Executive Briefing
+```
+
+**Agent 在对话中的双重角色：**
+
+| 角色 | 说明 | 示例 |
+|------|------|------|
+| **信息收集者** | 确认 EB 所需的关键输入 | "AWS 方最终谁参加？会议核心目标是什么？" |
+| **信息提供者** | 回应 sales 的问题，提供高管背景信息 | "根据 LinkedIn，这位 CEO 去年刚从 XX 公司过来..." |
+
+**关键原则：**
+
+1. **不要死等所有信息才生成** — 参会人和会议目标确认后即可生成初版，其余标 `[待确认]`
+2. **随时根据销售的问题调整** — 对话中发现新信息立即纳入
+3. **EBC 级别的 research 深度更高** — AWS 高管需要准确、当前的信息，agent 应主动做更深入的 web research
+4. **多轮对话是正常的** — 不要急于生成，确保关键共识达成
+
+**必确认项（Agent 不应假设的）：**
+- 会议日期/时间/形式/地点
+- 客户方最终参会人名单
+- AWS 方参会高管
+- 会议的核心目标（sales 想达成什么）
+- 谁发起的这次会议，为什么
+
+**可推断项（Agent 可以先填、让 sales 确认的）：**
+- 客户参会人的背景和风格（基于 CXO Persona + Contact Profiling + web research）
+- Talking points（基于商机背景 + 会议目标）
+- Account background（基于 EP + 公开信息）
+- Competitive intelligence
+
+---
+
+## 5. Core Rules
 
 ### Rule 1: Always Build the Bigger Picture
 After generating an Executive Briefing, check if an EP exists. If not, auto-create one.
@@ -108,7 +159,7 @@ Every piece of information must carry a provenance label so sales knows the conf
 
 ---
 
-## 5. EB Template
+## 6. EB Template
 
 Read [references/executive-briefing.md](references/executive-briefing.md) before generating. The template has 5 sections:
 
@@ -120,7 +171,7 @@ Read [references/executive-briefing.md](references/executive-briefing.md) before
 
 ---
 
-## 6. Attendee Background Dimensions
+## 7. Attendee Background Dimensions
 
 For each customer attendee, cover in one focused paragraph:
 
@@ -132,7 +183,7 @@ For each customer attendee, cover in one focused paragraph:
 
 ---
 
-## 7. Company Profile Dimensions
+## 8. Company Profile Dimensions
 
 Cover in one focused paragraph:
 
@@ -144,7 +195,7 @@ Cover in one focused paragraph:
 
 ---
 
-## 8. Relationship with Other Skills
+## 9. Relationship with Other Skills
 
 | Skill | Relationship | How to Access | If Unavailable |
 |--------|-------------|---------------|----------------|
@@ -157,7 +208,7 @@ Cover in one focused paragraph:
 
 ---
 
-## 9. Document Quality Standards
+## 10. Document Quality Standards
 
 Before delivering, validate:
 - [ ] INTERNAL marking clearly visible
@@ -170,7 +221,7 @@ Before delivering, validate:
 
 ---
 
-## 10. Information Insufficient Fallback
+## 11. Information Insufficient Fallback
 
 1. **Never block.** Generate best-effort with available information.
 2. **Never hallucinate.** Mark gaps as `[待确认]` with actionable context.
@@ -180,7 +231,7 @@ Before delivering, validate:
 
 ---
 
-## 11. Language & Tone
+## 12. Language & Tone
 
 - **Professional but approachable**
 - **Action-oriented** — active voice, lead with verbs
@@ -190,7 +241,7 @@ Before delivering, validate:
 
 ---
 
-## 12. Document Output
+## 13. Document Output
 
 ### Default: HTML (Material Design 3)
 
@@ -251,4 +302,4 @@ MilestoneBrief = EP Roadmap milestone 描述精简版（2-4个英文单词，keb
 
 ---
 
-*Executive Briefing Skill | Version: 2.2 | INTERNAL USE ONLY*
+*Executive Briefing Skill | Version: 2.3 | INTERNAL USE ONLY*
