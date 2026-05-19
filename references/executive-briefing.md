@@ -148,7 +148,7 @@ Sample "Who requested and why"：
 ## 2. Customer Attendee Background
 
 <!-- AGENT GUIDANCE:
-📥 数据源：EP Key Stakeholders + CXO Personas + Contact Profiling + Account Information + 销售补充
+📥 数据源：EP Key Stakeholders + CXO Personas + Contact Profiling + Account Context + 销售补充
 
 定位：让高管在 2 分钟内了解 "我面对的是什么人、他们在乎什么、我跟他们聊的时候要注意什么"
 
@@ -193,7 +193,7 @@ Sample "Who requested and why"：
 ### Company Profile
 
 <!-- AGENT GUIDANCE:
-📥 数据源：Account Information skill + web research
+📥 数据源：Account Context skill + web research
 
 输出格式：
 - 输出为一整段描述性中文文字，语言自然流畅
@@ -366,7 +366,7 @@ Sample output format：
 ## 4. AWS Account Background
 
 <!-- AGENT GUIDANCE:
-📥 数据源：Account Information skill + EP Opp Snapshot + EP Win Strategy
+📥 数据源：Account Context skill + EP Opp Snapshot + EP Win Strategy
 
 定位：让高管了解 "这个客户跟 AWS 的关系全貌" — spend、增长势头、问题、竞争
 
@@ -462,7 +462,7 @@ Sample：
 > 时间线：POC 4 周 → 全量上线 3 个月
 
 ### C. Competitive Intelligence
-📥 数据源：EP Win Strategy + Compete skill + 销售补充
+📥 数据源：EP Win Strategy + Competitive Intelligence skill + 销售补充
 
 生成规则：
 - 只写跟本次会议直接相关的竞争对手
