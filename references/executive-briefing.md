@@ -43,7 +43,7 @@ EBC 是 Call Plan 的高管版本。当 EP Roadmap 中的 milestone 是 Executiv
 | 来源 | 说明 |
 |---|---|
 | EP 自动拉取 | Opportunity Snapshot (deal context), Key Stakeholders (customer attendees), Win Strategy, Engagement Roadmap (当前 milestone 位置), Estimate & Contingency |
-| Account Information skill | 客户公司信息、AWS 账户数据、spend 数据 |
+| Account Context skill | 客户公司信息、AWS 账户数据、spend 数据 |
 | CXO Personas + Contact Profiling | 客户高管背景、沟通风格、决策模式 |
 | 销售补充 | 会议背景、具体 asks、最新关系动态、内部政治 |
 | Agent 生成 | 基于以上整合为 executive-ready 的简洁文档 |

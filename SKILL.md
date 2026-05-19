@@ -7,6 +7,8 @@ description: >
   Works with Engagement Plan, Account Context, Post-Meeting Report, Opportunity Progression, Contact Profiling, CXO Personas, Market Intelligence, and Call Plan skills.
   Triggers on: "EBC", "executive briefing", "internal briefing", "leadership briefing",
   "EBC preparation", "executive visit", "领导拜访", "高管简报".
+  Also trigger when: sales mentions VP/SVP/GM joining a customer meeting, EP Roadmap milestone type is EBC or leadership briefing, sales asks "高管要去客户那边需要准备什么", "领导下周要拜访客户", "这个 milestone 是 EBC 级别的", or any scenario where AWS executive participation requires a structured preparation document.
+  If the meeting involves any AWS executive (VP+) going to a customer, this skill should be invoked — even if the user doesn't explicitly say "executive briefing".
 ---
 
 # Executive Briefing Skill
@@ -96,6 +98,11 @@ Agent 正式生成 Executive Briefing
 2. **随时根据销售的问题调整** — 对话中发现新信息立即纳入
 3. **EBC 级别的 research 深度更高** — AWS 高管需要准确、当前的信息，agent 应主动做更深入的 web research
 4. **多轮对话是正常的** — 不要急于生成，确保关键共识达成
+5. **对话收敛判断** — 满足以下任一条件即可进入生成：
+   - 必确认项（下方列表）全部确认
+   - 销售明确说"可以了/开始生成/够了"
+   - 连续 2 轮 agent 提问后销售没有新增信息（说明已掏空）
+   - Agent 已问满 3 轮（每轮 max 3 个问题），仍有缺失 → 先生成初版，缺失项标 `[待确认]`
 
 **必确认项（Agent 不应假设的）：**
 - 会议日期/时间/形式/地点
@@ -144,6 +151,12 @@ Many fields require information the agent cannot independently verify (relations
 4. Add `[Updated: YYYY-MM-DD]` timestamp next to every changed field
 5. Notify sales: "EP has been updated to reflect the Executive Briefing changes — please review."
 
+**反向：EP 变更后对已生成 EB 的影响**
+EB 不是 living document（每次会议一个新文件），但如果 EP 在 EB 生成后、会议发生前出现关键变更（如新增/变更参会人、Win Strategy 调整、竞争态势变化），agent 应：
+1. 主动提示销售："{变更内容} 可能影响已生成的 EB，是否需要更新？"
+2. 销售确认后，更新 EB 对应 Section 并标注 `[Updated: YYYY-MM-DD]`
+3. 如果不更新，至少确保销售 aware of the change（避免高管拿着过时信息去开会）
+
 ### Rule 7: Data Provenance Labeling
 Every piece of information must carry a provenance label so sales knows the confidence level.
 
@@ -160,6 +173,12 @@ Every piece of information must carry a provenance label so sales knows the conf
 ---
 
 ## 6. EB Template
+
+⚠️ **SKILL.md vs references/executive-briefing.md 的职责边界：**
+- **SKILL.md**（本文件）= 规则、流程、依赖关系、调用逻辑 — agent 的行为指令
+- **references/executive-briefing.md** = 模板结构、写作标准、AGENT GUIDANCE — 生成内容时的格式和质量标准
+
+Agent 生成 EB 时先读 SKILL.md 确认流程和规则，再读 references 获取模板结构和写作指导。两者不重复定义同一件事。
 
 Read [references/executive-briefing.md](references/executive-briefing.md) before generating. The template has 5 sections:
 
@@ -306,4 +325,4 @@ MilestoneBrief = EP Roadmap milestone 描述精简版（2-4个英文单词，keb
 
 ---
 
-*Executive Briefing Skill | Version: 2.3 | INTERNAL USE ONLY*
+*Executive Briefing Skill | Version: 2.4 | INTERNAL USE ONLY*
