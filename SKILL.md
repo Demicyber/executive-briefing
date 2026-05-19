@@ -4,7 +4,7 @@ description: >
   Generates Executive Briefing Documents for AWS internal executive preparation.
   Used for EBC visits and when AWS senior leadership joins customer meetings.
   This is the sole preparation document for these scenarios — no Call Plan is produced alongside.
-  Works with Engagement Plan, Post-Meeting Report, Opportunity Progression, Contact Profiling, CXO Personas, and Call Plan skills.
+  Works with Engagement Plan, Account Context, Post-Meeting Report, Opportunity Progression, Contact Profiling, CXO Personas, Market Intelligence, and Call Plan skills.
   Triggers on: "EBC", "executive briefing", "internal briefing", "leadership briefing",
   "EBC preparation", "executive visit", "领导拜访", "高管简报".
 ---
@@ -200,8 +200,10 @@ Cover in one focused paragraph:
 | Skill | Relationship | How to Access | If Unavailable |
 |--------|-------------|---------------|----------------|
 | **Engagement Plan** | Primary context source. After generating, sync any attendee/objective changes back (Rule 6). | Load `EP_{Customer}_{Opportunity}.html` from workspace. | Use sales rep's direct input (Path B). Auto-create EP. |
+| **Account Context** | 客户基本面信息（org chart、reporting line、公司概况）。优先从 EP 中已有的 stakeholder 信息获取；如 EP 不存在或信息不足，fallback 直接调用 account-context skill 获取。为 Company Profile 和 Attendee Background 的 Position & Tenure 提供数据支撑。 | 优先从 EP 获取。如不足，invoke `account-context` skill with customer name. | 通过与销售对话 + 网络搜索获取。Mark `[待确认]`。 |
 | **CXO Personas** | For exec attendees: role-level priorities, pain points, KPIs, objections (the **what** layer). Context-aware per meeting objective. | Load from `cxo-personas/personas/` using INDEX.md Title Mapping. | General executive priorities. Mark `[待确认]`. |
 | **Contact Profiling** | For every attendee: behavioral profile (the **how** layer). | Load if exists; otherwise build through dialogue with sales. | Use sales rep's input. Mark `[待确认]`. |
+| **Market Intelligence** | 客户外部环境信息（行业动态、重大事件、领导层变动）。优先从 EP 的 Win Strategy 和 Opportunity Snapshot 中获取；如 EP 信息不足以支撑 Company Profile 的 Strategic Priorities & Key Events 和 Recent Leadership Changes，fallback 通过 web research 或直接调用 market-intelligence skill 补充。EBC 级别要求信息当前、准确。 | 优先从 EP 获取。如不足，invoke `market-intelligence` skill with customer name，或 agent 自行 web research. | 依赖网络搜索获取公开信息。Mark `[网络搜索]`。 |
 | **Post-Meeting Report** | After EB visit, generate PMR. EB's Objectives and Success Definition auto-pulled into PMR Outcome Assessment. | N/A — PMR reads from EB. | N/A. |
 | **Call Plan** | Mutual exclusion — if meeting is EBC or leadership briefing → generate EB, NOT Call Plan. | N/A. | N/A. |
 | **Opportunity Progression** | Sales stage and opportunity context inform Meeting Objectives. Stage advancement validated by Opp Progression after PMR (not by EB). | Load opp record if exists. | Confirm stage with sales. |
